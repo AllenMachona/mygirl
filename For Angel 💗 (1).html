@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>For Angel 💗</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --rose:#ff4d8d; --pink:#ff8fb8; --blush:#ffc2d9; --petal:#fff0f6; --deep:#b0245f; --ink:#5a1838;
+    --b:0; /* blush level 0..1, set from JS */
+  }
+  *{box-sizing:border-box;margin:0}
+  html,body{height:100%}
+  body{
+    font-family:"Quicksand",system-ui,sans-serif;color:var(--ink);overflow-x:hidden;
+    background:linear-gradient(135deg,#ffd6e7,#ffb3d1,#ff9ec4,#ffd0e5);background-size:400% 400%;
+    animation:bg 14s ease infinite;display:flex;align-items:center;justify-content:center;padding:16px;
+  }
+  @keyframes bg{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+  #fx{position:fixed;inset:0;pointer-events:none;z-index:1}
+  .wrap{position:relative;z-index:2;width:min(560px,100%);display:flex;flex-direction:column;align-items:center;gap:6px}
+
+  /* ---------- Arona (original mascot) ---------- */
+  .arona{position:relative;width:130px;height:140px;animation:float 3.4s ease-in-out infinite;filter:drop-shadow(0 12px 14px rgba(176,36,95,.25))}
+  @keyframes float{50%{transform:translateY(-10px) rotate(-2deg)}}
+  .halo{position:absolute;top:0;left:50%;width:64px;height:20px;margin-left:-32px;border:5px solid #ffe38a;border-radius:50%;
+    box-shadow:0 0 14px #fff2b5,inset 0 0 8px #fff2b5;animation:halo 2.4s ease-in-out infinite}
+  @keyframes halo{50%{transform:translateY(-5px) scale(1.06);box-shadow:0 0 26px #fff2b5,inset 0 0 12px #fff2b5}}
+  .body{position:absolute;bottom:0;left:50%;width:118px;height:106px;margin-left:-59px;border-radius:52% 52% 46% 46%;
+    background:radial-gradient(circle at 35% 28%,#fff,#ffe9f2 55%,#ffc9de);border:3px solid #fff}
+  .body::before,.body::after{content:"";position:absolute;top:-16px;width:34px;height:40px;background:#ffe3ee;border:3px solid #fff;border-radius:50% 50% 40% 40%}
+  .body::before{left:8px;transform:rotate(-14deg)} .body::after{right:8px;transform:rotate(14deg)}
+  .eye{position:absolute;top:42px;width:15px;height:20px;background:#5a1838;border-radius:50%;animation:blink 4.5s infinite}
+  .eye::after{content:"";position:absolute;top:3px;left:3px;width:6px;height:6px;background:#fff;border-radius:50%}
+  .eye.l{left:30px}.eye.r{right:30px}
+  @keyframes blink{0%,94%,100%{transform:scaleY(1)}97%{transform:scaleY(.1)}}
+  .cheek{position:absolute;top:64px;width:22px;height:13px;border-radius:50%;background:#ff5f99;
+    opacity:calc(.25 + var(--b)*.75);filter:blur(2px);transform:scale(calc(.8 + var(--b)*.7));transition:all .6s}
+  .cheek.l{left:14px}.cheek.r{right:14px}
+  .mouth{position:absolute;top:70px;left:50%;width:14px;height:8px;margin-left:-7px;border-bottom:3px solid #5a1838;border-radius:0 0 14px 14px;transition:all .3s}
+  .arona.shy .mouth{width:10px;height:10px;margin-left:-5px;border:3px solid #5a1838;border-radius:50%}
+  .arona.shy{animation:shake .5s}
+  @keyframes shake{20%{transform:translateX(-6px) rotate(-4deg)}40%{transform:translateX(6px) rotate(4deg)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
+  .steam{position:absolute;top:-4px;font-size:18px;opacity:0;pointer-events:none}
+  .arona.shy .steam{animation:steam 1.2s ease-out}
+  @keyframes steam{0%{opacity:0;transform:translateY(10px)}30%{opacity:1}100%{opacity:0;transform:translateY(-34px)}}
+
+  /* ---------- Card ---------- */
+  .bubble{position:relative;background:rgba(255,255,255,.8);
+    border:2px solid rgba(255,255,255,.85);border-radius:28px;padding:26px 24px 24px;width:100%;
+    box-shadow:0 20px 50px rgba(176,36,95,.22);min-height:290px;transition:transform .4s}
+  .bubble::before{content:"";position:absolute;top:-11px;left:50%;margin-left:-11px;width:22px;height:22px;background:inherit;
+    border-left:2px solid rgba(255,255,255,.85);border-top:2px solid rgba(255,255,255,.85);transform:rotate(45deg);border-radius:4px 0 0 0}
+  .meter{display:flex;align-items:center;gap:10px;font-weight:700;font-size:13px;color:var(--deep);margin-bottom:14px}
+  .track{flex:1;height:12px;background:rgba(255,255,255,.7);border-radius:99px;overflow:hidden}
+  .fill{height:100%;width:0;background:linear-gradient(90deg,#ff9ec4,#ff2f7d);border-radius:99px;transition:width .8s cubic-bezier(.3,1.5,.5,1);position:relative}
+  .fill::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.6),transparent);animation:shine 1.8s infinite}
+  @keyframes shine{from{transform:translateX(-100%)}to{transform:translateX(100%)}}
+  h1{font-family:"Dancing Script",cursive;font-size:clamp(40px,9vw,58px);line-height:1.05;text-align:center;
+    background:linear-gradient(90deg,#ff2f7d,#ff8fb8,#ff2f7d);background-size:200%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 3s linear infinite}
+  @keyframes shimmer{to{background-position:200%}}
+  .q{font-size:clamp(18px,4.6vw,22px);font-weight:700;line-height:1.4;text-align:center;min-height:62px;margin-bottom:18px}
+  .q.big{font-size:17px;font-weight:600;margin-top:10px}
+  .caret::after{content:"▍";color:var(--rose);animation:cr .7s steps(2) infinite}
+  @keyframes cr{50%{opacity:0}}
+  .opts{position:relative;display:flex;flex-direction:column;gap:10px;min-height:150px}
+  button,.btn{font:inherit;font-weight:700;font-size:16px;border:0;cursor:pointer;color:#fff;padding:13px 18px;border-radius:99px;
+    background:linear-gradient(135deg,#ff6fa5,#ff2f7d);box-shadow:0 8px 18px rgba(255,47,125,.35);
+    transition:transform .2s,box-shadow .2s;opacity:0;animation:pop .18s cubic-bezier(.3,1.7,.5,1) forwards}
+  .opts button:nth-child(2){animation-delay:.02s}.opts button:nth-child(3){animation-delay:.04s}
+  @keyframes pop{from{opacity:0;transform:scale(.6) translateY(16px)}to{opacity:1;transform:none}}
+  button:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 14px 24px rgba(255,47,125,.45)}
+  button:active{transform:scale(.96)}
+  button:focus-visible,input:focus-visible{outline:3px solid #fff;outline-offset:3px}
+  button.soft{background:#fff;color:var(--deep);box-shadow:0 6px 14px rgba(176,36,95,.18)}
+  button.run{position:absolute;left:0;right:0;transition:transform .25s cubic-bezier(.3,1.6,.5,1)}
+  input[type=text]{font:inherit;font-weight:600;width:100%;padding:14px 18px;border-radius:99px;border:2px solid #fff;background:rgba(255,255,255,.85);color:var(--ink);text-align:center;font-size:16px}
+  input[type=range]{width:100%;accent-color:#ff2f7d;height:30px}
+  .bpm{text-align:center;font-size:34px;font-weight:700;color:var(--rose);margin-bottom:6px}
+  .bpm span{display:inline-block;animation:beat var(--spd,1s) infinite}
+  @keyframes beat{0%,100%{transform:scale(1)}15%{transform:scale(1.3)}30%{transform:scale(1)}45%{transform:scale(1.2)}}
+  .fade{animation:fadein .5s both}@keyframes fadein{from{opacity:0;transform:translateY(12px)}}
+  .recap{text-align:left;background:rgba(255,255,255,.7);border-radius:18px;padding:12px 16px;margin:12px 0;max-height:150px;overflow:auto;font-size:14px;line-height:1.5}
+  .recap b{color:var(--deep)}
+  @media (prefers-reduced-motion:reduce){*{animation-duration:.01s!important;animation-iteration-count:1!important}}
+
+  /* ---------- admin ---------- */
+  #adminBtn{position:fixed;right:14px;bottom:14px;z-index:20}
+  #panel{position:fixed;inset:0;z-index:30;background:rgba(90,24,56,.55);display:none;align-items:center;justify-content:center;padding:14px}
+  #panel.on{display:flex}
+  .pbox{background:#fff0f6;border-radius:24px;max-width:680px;width:100%;max-height:92vh;overflow:auto;padding:20px 22px;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+  .pbox h2{font-family:"Dancing Script",cursive;font-size:34px;color:var(--rose)} .pbox h3{margin:16px 0 8px;color:var(--deep)}
+  .pbox p.n{font-size:13px;margin:4px 0 8px;line-height:1.5}
+  button.sm{font-size:14px;padding:8px 14px;box-shadow:none}
+  .row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+  .qrow{background:#fff;border-radius:16px;padding:10px;margin-bottom:10px;display:grid;gap:6px}
+  .qrow input,.qrow textarea,.qrow select{font:inherit;font-size:14px;padding:8px 10px;border-radius:10px;border:1px solid #ffb3d1;width:100%;background:#fff;color:var(--ink)}
+  .resp{background:#fff;border-radius:16px;padding:10px 12px;margin-bottom:8px;font-size:14px;line-height:1.5}
+  .resp small{color:var(--deep);font-weight:700}
+</style>
+</head>
+<body>
+<canvas id="fx"></canvas>
+
+<div class="wrap">
+  <div class="arona" id="arona" aria-hidden="true">
+    <div class="halo"></div>
+    <div class="body">
+      <div class="eye l"></div><div class="eye r"></div>
+      <div class="cheek l"></div><div class="cheek r"></div>
+      <div class="mouth"></div>
+    </div>
+    <span class="steam" style="left:20px">💨</span><span class="steam" style="right:20px">💨</span>
+  </div>
+
+  <div class="bubble" id="card" aria-live="polite">
+    <div id="stage"></div>
+  </div>
+</div>
+
+<script>
+/* ====== EDIT THESE ====== */
+const HER  = "Angel";          // her name
+const GUIDE = "Arona";         // the little helper who asks the questions
+const FROM = "Your love";      // how the final letter is signed (put your name here)
+/* ======================== */
+
+const $ = s => document.querySelector(s);
+const stage = $("#stage"), aroNa = $("#arona"), card = $("#card");
+const answers = [];
+let step = -1, blush = 0;
+
+const DEFAULT_QUESTIONS = [
+  { t:`${HER}, do you remember the first time we met?`,
+    o:["Of course I do 💕","Tell me the story again 🥺","I was too nervous to forget 🙈"] },
+  { t:`What was the first thing about me that made your heart skip?`,
+    o:["Your smile... I mean mine 😏","My eyes 👀","My voice 🎶","Everything about me 💞"] },
+  { t:`When I smile at you, what happens inside?`,
+    o:["Butterflies everywhere 🦋","I forget how to talk 😶","I smile back like crazy 😊"] },
+  { t:`Choose carefully, ${HER}: a kiss on the forehead, or a hug that never ends?`,
+    o:["Kiss on the forehead 😚","A hug that never ends 🤗"] },
+  { t:`Be honest... how does your heart feel when I'm close to you?`,
+    o:["Calm and safe 😌","Beating like a drum 🥁","Racing, I can't breathe 😳"] },
+  { t:`If I asked you out tonight, what would you say?`, run:"No way 🙄",
+    o:["Yes, obviously 💖","Maybe... ask me again 😏"] },
+  { t:`Do you blush when I call you beautiful?`, run:"Never 😤",
+    o:["Yes, my face turns red 🍎","A little bit 🙈"] },
+  { t:`Finish this for me: "When I'm with you, I feel..."`,
+    o:["Safe 🏡","Happy 😊","Like the luckiest girl 🍀","All of the above 💖"] },
+  { t:`${HER}... do you love me?`, vanish:"No 🙅",
+    o:["Yes, I love you 💖"] },
+  { t:`Last one, ${HER}... will you stay with me, today and always?`, run:"No 💔",
+    o:["Yes, forever! 💍"] }
+];
+let QUESTIONS = JSON.parse(JSON.stringify(DEFAULT_QUESTIONS));
+
+/* ---------- typewriter ---------- */
+let typing;
+function say(el, text, cb){
+  clearInterval(typing); el.classList.remove("caret"); el.textContent=text; cb&&cb();
+}
+
+/* ---------- Arona reactions ---------- */
+function shy(){
+  aroNa.classList.remove("shy"); void aroNa.offsetWidth; aroNa.classList.add("shy");
+  setTimeout(()=>aroNa.classList.remove("shy"),1400);
+}
+function setBlush(n){
+  blush=n; const v=n/QUESTIONS.length;
+  document.documentElement.style.setProperty("--b",v);
+}
+
+/* ---------- flow ---------- */
+function intro(){
+  stage.innerHTML=`<h1>Hey ${HER} 💗</h1>
+    <p class="q big fade">I made this just for you. I have a few questions for you, and I want your honest answers. Careful, you might blush. 🌸<br><small>(${GUIDE} will be right here with you.)</small></p>
+    <div class="opts" style="min-height:0"><button id="go">I'm ready 🥰</button></div>`;
+  $("#go").onclick=()=>{burst(innerWidth/2,innerHeight/2,26);next();};
+}
+
+function next(){
+  step++; if(step>=QUESTIONS.length) return finale();
+  const q=QUESTIONS[step];
+  stage.innerHTML=`<div class="q" id="qt"></div><div id="inp"></div>`;
+  say($("#qt"),q.t,()=>drawInput(q));
+}
+
+function drawInput(q){
+  $("#inp").innerHTML=`<div class="opts" id="opts"></div>`;
+  const wrap=$("#opts");
+  q.o.forEach((txt,i)=>{
+    const b=document.createElement("button"); b.textContent=txt; if(i%2) b.classList.add("soft");
+    b.onclick=e=>answer(q,txt,e); wrap.appendChild(b);
+  });
+  if(q.run) wrap.appendChild(runaway(q.run,wrap));
+  if(q.vanish) wrap.appendChild(vanisher(q.vanish,wrap));
+}
+
+/* the sneaky "No" button that dodges her */
+function runaway(label,wrap){
+  const b=document.createElement("button"); b.textContent=label; b.className="soft run";
+  b.style.top=(wrap.children.length*58)+"px"; b.style.animationDelay=".36s";
+  const dodge=()=>{
+    const r=wrap.getBoundingClientRect();
+    const x=(Math.random()-.5)*(r.width-160), y=(Math.random()-.5)*120-30;
+    b.style.transform=`translate(${x}px,${y}px) rotate(${(Math.random()-.5)*24}deg)`;
+    const msgs=["Nice try 😜","Nope, not allowed! 💕","Too slow, ${HER}!","Hehe, you can't catch me 🏃"];
+    b.textContent=msgs[Math.floor(Math.random()*msgs.length)].replace("${HER}",HER);
+  };
+  b.onmouseenter=dodge; b.ontouchstart=e=>{e.preventDefault();dodge();}; b.onclick=dodge;
+  return b;
+}
+
+/* a "No" that disappears when she tries it, leaving only "Yes" */
+function vanisher(label,wrap){
+  const b=document.createElement("button"); b.textContent=label; b.className="soft";
+  const gone=e=>{
+    if(e&&e.preventDefault) e.preventDefault();
+    if(b.dataset.gone) return; b.dataset.gone=1;
+    shy(); burst(b.getBoundingClientRect().left+60,b.getBoundingClientRect().top,10);
+    b.style.pointerEvents="none";
+    b.style.transition="all .5s cubic-bezier(.5,-.6,.8,.4)";
+    b.style.transform="scale(0) rotate(25deg)"; b.style.opacity="0";
+    setTimeout(()=>{b.remove(); const y=wrap.querySelector("button");
+      if(y){y.style.transition="transform .5s cubic-bezier(.3,1.7,.5,1)";y.style.transform="scale(1.08)";}},500);
+  };
+  b.onmouseenter=gone; b.ontouchstart=gone; b.onclick=gone;
+  return b;
+}
+
+function answer(q,val,e){
+  answers.push({q:q.t,a:val}); save(false);
+  const r=(e&&e.target&&e.target.getBoundingClientRect())||{left:innerWidth/2,top:innerHeight/2,width:0};
+  burst(r.left+r.width/2,r.top,18);
+  shy(); setBlush(blush+1);
+  card.style.transform="scale(1.03)"; setTimeout(()=>card.style.transform="",250);
+  const lines=["Kyaa~ my face is hot! 🥵","Aww, that's so sweet! 💞","I'm blushing for you both! 🙈","Your answer made my halo glow! ✨","Heart. Melting. Now. 🫠"];
+  stage.innerHTML=`<div class="q fade" id="qt"></div>`;
+  next();
+}
+
+function finale(){
+  setBlush(QUESTIONS.length); shy(); save(true);
+  const list=answers.filter(a=>a.a).map(a=>`<div>💗 <b>${esc(a.a)}</b></div>`).join("");
+  stage.innerHTML=`<h1>${HER}, you're blushing! 😳</h1>
+    <p class="q big fade">Blush level: <b>100%</b>. Here is everything you told me:</p>
+    <div class="recap fade">${list}</div>
+    <p class="q big fade" style="min-height:0">I'll keep every one of these answers close to my heart. You are my favourite person in the whole world.<br>— ${FROM} 💌</p>
+    <div class="opts" style="min-height:0"><button id="again">More hearts! 💖</button></div>`;
+  $("#again").onclick=e=>burst(innerWidth/2,innerHeight/3,70);
+  let n=0; const t=setInterval(()=>{burst(Math.random()*innerWidth,Math.random()*innerHeight*.6,24); if(++n>8)clearInterval(t);},450);
+}
+
+/* ---------- particles: floating petals + heart bursts ---------- */
+const cv=$("#fx"),cx=cv.getContext("2d"); let parts=[],floaters=[];
+function size(){cv.width=innerWidth;cv.height=innerHeight}
+addEventListener("resize",size); size();
+const GLYPHS=["💗","💖","💕","🌸","✨","💘"];
+for(let i=0;i<26;i++) floaters.push(mk());
+function mk(){return{x:Math.random()*innerWidth,y:innerHeight+Math.random()*innerHeight,s:12+Math.random()*22,v:.4+Math.random()*.9,
+  w:Math.random()*6,g:GLYPHS[Math.floor(Math.random()*GLYPHS.length)],a:.25+Math.random()*.4}}
+function burst(x,y,n){
+  for(let i=0;i<n;i++){const a=Math.random()*Math.PI*2,s=2+Math.random()*7;
+    parts.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s-3,life:1,s:14+Math.random()*20,g:GLYPHS[Math.floor(Math.random()*GLYPHS.length)]});}
+}
+function loop(){
+  cx.clearRect(0,0,cv.width,cv.height);
+  floaters.forEach((f,i)=>{f.y-=f.v;f.w+=.02;f.x+=Math.sin(f.w)*.7;
+    if(f.y<-40) floaters[i]=Object.assign(mk(),{y:innerHeight+30});
+    cx.globalAlpha=f.a;cx.font=f.s+"px serif";cx.fillText(f.g,f.x,f.y);});
+  parts=parts.filter(p=>p.life>0);
+  parts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.22;p.vx*=.99;p.life-=.014;
+    cx.globalAlpha=Math.max(p.life,0);cx.font=p.s+"px serif";cx.fillText(p.g,p.x,p.y);});
+  requestAnimationFrame(loop);
+}
+loop();
+addEventListener("pointerdown",e=>{ if(!e.target.closest("button,input")) burst(e.clientX,e.clientY,8); });
+
+/* ---------- helpers, database and admin (only active on the published page) ---------- */
+function esc(t){return String(t).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+let db=null,uid=null,isAdmin=false;
+async function save(done){
+  if(!db||!uid||isAdmin) return;
+  try{await db.doc("responses/"+uid).set({answers:answers.map(a=>({q:a.q,a:a.a})),done:!!done,at:Date.now()});}catch(e){}
+}
+(async()=>{
+  if(typeof claude==="undefined") return;
+  let user=null; try{user=await claude.use("user");}catch(e){}
+  try{db=await claude.use("db");}catch(e){}
+  if(user){try{isAdmin=await user.canEdit();uid=await user.id();}catch(e){}}
+  if(db){try{const sn=await db.doc("config/questions").get();
+    const d=sn.exists&&sn.data();
+    if(d&&Array.isArray(d.list)&&d.list.length) QUESTIONS=d.list;}catch(e){}}
+  if(isAdmin) initAdmin();
+})();
+
+function el(tag,props={},kids=[]){const n=document.createElement(tag);Object.assign(n,props);kids.forEach(k=>n.append(k));return n;}
+function initAdmin(){
+  const btn=el("button",{id:"adminBtn",className:"sm",textContent:"⚙️ Admin"});
+  const respBox=el("div"),qBox=el("div"),msg=el("p",{className:"n"});
+  const bar=(items)=>el("div",{className:"row"},items);
+  const mk=(t,fn,soft)=>el("button",{className:"sm"+(soft?" soft":""),textContent:t,onclick:fn});
+  let draft=[];
+  const panel=el("div",{id:"panel"},[el("div",{className:"pbox"},[
+    el("h2",{textContent:"Admin"}),
+    el("p",{className:"n",textContent:"You can see her answers and change the questions here. Your own answers are not saved while you preview."}),
+    el("h3",{textContent:"Her answers"}),respBox,
+    el("h3",{textContent:"Questions (multiple choice, one answer per line)"}),qBox,msg,
+    bar([mk("Add question",()=>{grab();draft.push({t:"New question?",o:["Yes 💖","Maybe 😏"]});drawEd();}),
+         mk("Save questions",saveQ),
+         mk("Restore defaults",async()=>{draft=JSON.parse(JSON.stringify(DEFAULT_QUESTIONS));QUESTIONS=JSON.parse(JSON.stringify(DEFAULT_QUESTIONS));
+           try{await db.doc("config/questions").delete();}catch(e){} drawEd();msg.textContent="Defaults restored.";},true)]),
+    bar([mk("Preview from the start",()=>{panel.classList.remove("on");step=-1;answers.length=0;setBlush(0);intro();},true),
+         mk("Close",()=>panel.classList.remove("on"),true)])
+  ])]);
+  document.body.append(btn,panel);
+  btn.onclick=()=>{draft=JSON.parse(JSON.stringify(QUESTIONS));drawEd();panel.classList.add("on");};
+  function drawEd(){
+    qBox.replaceChildren();
+    draft.forEach((q,i)=>{
+      const t=el("input",{type:"text",value:q.t,className:"qt"});
+      const o=el("textarea",{rows:Math.max(2,q.o.length),value:q.o.join("\n"),className:"qo"});
+      const x=el("select",{className:"qx"},[
+        el("option",{value:"",textContent:"No extra button"}),
+        el("option",{value:"run",textContent:"Extra 'No' that runs away"}),
+        el("option",{value:"vanish",textContent:"Extra 'No' that disappears"})]);
+      x.value=q.run?"run":q.vanish?"vanish":"";
+      qBox.append(el("div",{className:"qrow"},[t,o,x,mk("Delete this question",()=>{grab();draft.splice(i,1);drawEd();},true)]));
+    });
+  }
+  function grab(){
+    draft=[...qBox.querySelectorAll(".qrow")].map((r,i)=>{
+      const old=draft[i]||{}; const x=r.querySelector(".qx").value;
+      const q={t:r.querySelector(".qt").value.trim(),o:r.querySelector(".qo").value.split("\n").map(v=>v.trim()).filter(Boolean)};
+      if(x==="run") q.run=old.run||"No 🙄"; if(x==="vanish") q.vanish=old.vanish||"No 🙅";
+      return q;});
+  }
+  async function saveQ(){
+    grab(); const list=draft.filter(q=>q.t&&q.o.length);
+    if(!list.length){msg.textContent="Add at least one question with an answer.";return;}
+    if(!db){msg.textContent="Saving isn't available here.";return;}
+    try{await db.doc("config/questions").set({list});QUESTIONS=JSON.parse(JSON.stringify(list));msg.textContent="Saved. Angel will see these questions.";}
+    catch(e){msg.textContent="Could not save: "+(e.message||"error");}
+  }
+  if(db){try{db.collection("responses").onSnapshot(snap=>{
+    respBox.replaceChildren();
+    if(snap.empty){respBox.append(el("p",{className:"n",textContent:"No answers yet."}));return;}
+    snap.docs.forEach(d=>{const v=d.data()||{};
+      const box=el("div",{className:"resp"},[el("small",{textContent:(v.done?"Finished":"In progress")+" · "+new Date(v.at||0).toLocaleString()})]);
+      (v.answers||[]).forEach(a=>box.append(el("div",{textContent:a.q+"  →  "+a.a})));
+      box.append(mk("Delete",async()=>{try{await d.ref?.delete?.()||await db.doc("responses/"+d.id).delete();}catch(e){}},true));
+      respBox.append(box);});
+  },()=>{});}catch(e){}}
+}
+
+intro();
+</script>
+</body>
+</html>
